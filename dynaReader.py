@@ -59,12 +59,12 @@ class winddata:
 #windData = winddata('gust_data/W20180904130846_10min.f71', 27.1791, 0.1316 * (108.3 / 10.0) ** 0.125, 56.8334)
 
 #windData = winddata('gust_data/W20180904131846_10min.f71', 27.509, 0.1664 * (108.3 / 10.0) ** 0.125, 54.161)
-#windData = winddata('gust_data/W20180904132846_10min.f71', 26.916, 0.1516 * (108.3 / 10.0) ** 0.125, 46.363)
+windData = winddata('gust_data/W20180904132846_10min.f71', 26.916, 0.1516 * (108.3 / 10.0) ** 0.125, 46.363)
 #windData = winddata('gust_data/W20180904135846_10min.f71', 20.540, 0.0767 * (108.3 / 10.0) ** 0.125, 11.380)
 
 #windData = winddata('gust_data/W20180904140846_10min.f71', 23.1275, 0.0543 * (108.3 / 10.0) ** 0.125, 35.1615)
 #windData = winddata('gust_data/W20180904141846_10min.f71', 22.1305, 0.0646 * (108.3 / 10.0) ** 0.125, 41.9391)
-windData = winddata('gust_data/W20180904142846_10min.f71', 21.3876, 0.0562 * (108.3 / 10.0) ** 0.125, 50.7775)
+#windData = winddata('gust_data/W20180904142846_10min.f71', 21.3876, 0.0562 * (108.3 / 10.0) ** 0.125, 50.7775)
 
 
 class member:
