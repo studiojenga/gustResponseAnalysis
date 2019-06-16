@@ -202,7 +202,7 @@ def powerSpectrumAerodynamicForce(_dof, _freq, _modeN, _elmv, _elm2m, _usePSWind
 def powerSpectrumDisplacement(_dof, _freq, _elmv, _modev, _elm2m, _num_mode, _usePSWind):
     """Power Spectrum of Displacement"""
     #Calculate mode-dependent data
-
+    '''
     start_time = datetime.now()
     aA_deltatime = timedelta()
     cF_deltatime = timedelta()
@@ -210,51 +210,51 @@ def powerSpectrumDisplacement(_dof, _freq, _elmv, _modev, _elm2m, _num_mode, _us
     mA_deltatime = timedelta()
     pSA_deltatime = timedelta()
     pSD_deltatime = timedelta()
-
+    '''
     for i in _elmv:
         if _dof == 'drag':
-            aA_start_time = datetime.now()
+            #aA_start_time = datetime.now()
             _elmv[i].aa[_dof] = aerodynamicAdmittanceDrag(_elmv[i], _freq, False)
-            aA_end_time = datetime.now()
-            aA_deltatime += aA_end_time - aA_start_time
+            #aA_end_time = datetime.now()
+            #aA_deltatime += aA_end_time - aA_start_time
         elif _dof == 'lift':
-            aA_start_time = datetime.now()
+            #aA_start_time = datetime.now()
             _elmv[i].aa[_dof] = aerodynamicAdmittanceLift(_elmv[i], _freq, False)
-            aA_end_time = datetime.now()
-            aA_deltatime += aA_end_time - aA_start_time
+            #aA_end_time = datetime.now()
+            #aA_deltatime += aA_end_time - aA_start_time
         for j in _elmv:
-            cF_start_time = datetime.now()
+            #cF_start_time = datetime.now()
             _elm2m[i][j].corrF = correlationFunction(_elm2m[i][j], _freq)
-            cF_end_time = datetime.now()
-            cF_deltatime += cF_end_time - cF_start_time
+            #cF_end_time = datetime.now()
+            #cF_deltatime += cF_end_time - cF_start_time
             if _usePSWind == False:
-                pSW_start_time = datetime.now()
+                #pSW_start_time = datetime.now()
                 if _dof == 'drag':
                     _elm2m[i][j].ps[_dof] = powerSpectrumHino(_freq, _elm2m[i][j].z, _elm2m[i][j].U, _elm2m[i][j].Iu, True)
                 elif _dof == 'lift':
                     _elm2m[i][j].ps[_dof] = powerSpectrumBushAndPanofsky(_freq, _elm2m[i][j].z, _elm2m[i][j].U, _elm2m[i][j].Iu * 0.5, True)
-                pSW_end_time = datetime.now()
-                pSW_deltatime += pS_end_time - pS_start_time
+                #pSW_end_time = datetime.now()
+                #pSW_deltatime += pS_end_time - pS_start_time
 
     mechAdmv = dict()
     psadfv = dict()
     psddv = dict()
     for k in range(_num_mode):
         #print(k)
-        mA_start_time = datetime.now()
+        #mA_start_time = datetime.now()
         omegaK = _modev[k + 1].omega
         xiSK = _modev[k + 1].damp[_dof]
         xiAK = _modev[k + 1].adamp[_dof]
         mechAdmv[k + 1] = mechanicalAdmittance(omegaK, xiSK, xiAK, _freq)
-        mA_end_time = datetime.now()
-        mA_deltatime += mA_end_time - mA_start_time
+        #mA_end_time = datetime.now()
+        #mA_deltatime += mA_end_time - mA_start_time
 
-        pSA_start_time = datetime.now()
+        #pSA_start_time = datetime.now()
         psadfv[k + 1] = powerSpectrumAerodynamicForce(_dof, _freq, k + 1, _elmv, _elm2m, _usePSWind)
-        pSA_end_time = datetime.now()
-        pSA_deltatime += pSA_end_time - pSA_start_time
+        #pSA_end_time = datetime.now()
+        #pSA_deltatime += pSA_end_time - pSA_start_time
 
-    pSD_start_time = datetime.now()
+    #pSD_start_time = datetime.now()
     for i in _elmv:
         elm = _elmv[i]
         psdd = 0.0
@@ -264,12 +264,12 @@ def powerSpectrumDisplacement(_dof, _freq, _elmv, _modev, _elm2m, _num_mode, _us
             elif _dof == 'lift':
                 psdd += mechAdmv[k + 1] * psadfv[k + 1] * elm.mode[k + 1].z ** 2.0
         psddv[i] = psdd
-    pSD_end_time = datetime.now()
-    pSD_deltatime += pSD_end_time - pSD_start_time
+    #pSD_end_time = datetime.now()
+    #pSD_deltatime += pSD_end_time - pSD_start_time
 
-    end_time = datetime.now()
-    deltatime = end_time - start_time
-
+    #end_time = datetime.now()
+    #deltatime = end_time - start_time
+    '''
     print(' Total Time:' + str(deltatime.total_seconds()) + ' s')
     print(' Aerodynamic Admittance:' + str(aA_deltatime.total_seconds()) + ' s')
     print(' Correlation Function:' + str(cF_deltatime.total_seconds()) + ' s')
@@ -277,7 +277,7 @@ def powerSpectrumDisplacement(_dof, _freq, _elmv, _modev, _elm2m, _num_mode, _us
     print(' Mechanical Admittance:' + str(mA_deltatime.total_seconds()) + ' s')
     print(' Power Spectrum of Aerodynamic Force:' + str(pSA_deltatime.total_seconds()) + ' s')
     print(' Power Spectrum of Displacement:' + str(pSD_deltatime.total_seconds()) + ' s')
-
+    '''
     return psddv
 
 def gustResponseDisplacement(_dof, _elmv, _modev, _freqv, _U10, _Iu10, _num_mode, _usePSWind, _nodePSDD):
