@@ -18,6 +18,7 @@ nodePSDD = 8138 #center of center span
 #nodePSDD = 8103 # 1/4 of center span
 #nodesPSDD = [8138'''center of center span''', 8103'''1/4 of center span''']
 
+#test commit
 min_f = 0.0005
 #max_f = 0.2
 max_f = 0.01
